@@ -1,0 +1,285 @@
+{% extends 'course/class_basic.html' %}
+
+{% block title%} My class home {% endblock %}
+{% block css1%}
+<meta name="theme-color" content="#ff7361">
+<meta name="msapplication-navbutton-color" content="#ff7361">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta property="og:site_name" content="Ask me" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://2code.info/demo/themes/ask-me/wp-content/uploads/2014/06/logo_light.png" />
+<meta property="og:title" content="Home No Box" />
+<meta property="og:url" content="https://2code.info/demo/themes/ask-me/home-no-box/" />
+{% endblock %}
+
+{% block body1 %}
+
+<div id="respond" class="comment-respond page-content clearfix ">
+
+  {% for i in question %}
+  <article>
+    <div style="background-color: bisque; padding-top: 5px;">
+      <h2> <a itemprop="url" href="#" rel="bookmark">
+          <span itemprop="name">{{ i.question }}<br><br></span> </a></h2>
+    </div>
+    <!--
+        <a class="question-report report_q" style="background-color: #f58544" href="#">Anwer</a>
+      <div class="question-type-main"><i class="icon-signal"></i>{{i.marks}}</div>
+      <div class="question-author" itemprop="author" itemscope itemtype="https://schema.org/Person"> <span itemprop="name"
+        class="">{{i.asked_by.get_full_name}}</b></span> <a href="https://2code.info/demo/themes/ask-me/author/ask-me/"
+        original-title="Ahmed Hassan" class="question-author-img tooltip-n">
+        <span></span> <img itemprop='image' class='avatar avatar-65 photo' alt='avatar' width='65' height='65'
+            src="/media/{{i.asked_by.profile.profile_image}}">
+    </a></div>
+<div class="question-inner">
+    <div class="clearfix"></div>
+    
+    <div class="question-details"> <span class="question-favorite"><i
+                class="icon-star"></i>{{i.whenpublished}}</span></div>
+    <span class="question-category"><i class="fa fa-folder-o"></i><a
+            href="/answers/{{ i.id }}/" rel="tag">* answers</a></span>
+    <span class="question-author-meta"> </span> 
+    <span class="question-date" itemprop="dateCreated"
+        datetime="November 19, 2017"><i class="fa fa-calendar"></i>
+        {{i.marks}} marks</span>
+   <!--<span class="question-comment"><a
+        href="https://2code.info/demo/themes/ask-me/question/do-i-need-to-have-a-undergrad-percentage-of-70-to-do-my-masters-in-germany/#respond"><i
+        class="fa fa-comments-o"></i><span itemprop="answerCount">0</span>
+            Answers</a></span>
+   <span class="question-view"><i class="icon-eye-open"></i>10671 views</span>
+    <span class="badge-span" style="background-color: #81d742">Explainer</span>
+    <div class="clearfix"></div>
+</div>
+      -->
+  </article>
+  {% endfor %}
+  {% if m %}
+  <div id="commentlist" class="page-content ">
+    <div class="boxedtitle page-title">
+      <h2>Your Answer</h2>
+    </div>
+    <ol class="commentlist clearfix">
+      {% for i in my_ans %}
+      <li class="comment byuser comment-author-barry even thread-even depth-1 comment " id="li-comment-937">
+        <div itemprop='suggestedAnswer' id="comment-937" class="comment-body clearfix" rel="post-2110">
+          <div class="avatar-img"> <a  class="tooltip-n"> 
+            <img itemprop='image' class="avatar img-circle" alt='avatar'style="width:30px height:30px" 
+          src="/media/{{i.answered_by.profile.profile_image}}">
+        </a></div>
+          <div class="comment-text">
+            <div class="author clearfix">
+              <div class="comment-author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+                <a itemprop="url" href="#"> <span itemprop="name">{{i.answered_by.get_full_name}}</span> </a>
+              </div>
+              <!--<div class="comment-vote">
+               <ul class="single-question-vote">
+                 <li class="loader_3"></li>
+                 <li><a href="/vote/{{i.id}}/" class="single-question-vote-up ask_vote_up comment_vote_up vote_allow"
+                     title="Like" id="comment_vote_up-937"><i class="icon-thumbs-up"></i></a></li>
+                 
+               </ul>
+             </div> <span itemprop="upvoteCount"
+               class="question-vote-result question_vote_result">
+               {% ifnotequal i.marks -1.0%}
+               {{i.vote}}
+               {%endifnotequal%}
+            </span>-->
+              <div class="comment-meta"> <a itemprop="url" class="date"><span><i
+                      class="fa fa-calendar"></i>{{i.whenpublished}}</span></a></div>
+              <div class="comment-reply">
+                {% ifnotequal i.marks -1.0%}
+                <a class="question_r_l comment_l report_c" href="#"><i class="icon-mark"></i>{{i.marks}} marks</a>
+                {%endifnotequal%}
+                <!--<a rel="nofollow"
+             class="comment-reply-link askme-reply-link" href="#respond" data-id="937"
+             aria-label="Reply to Mohamed Habaza"><i class="icon-reply"></i>Reply</a>-->
+              </div>
+
+            </div>
+            <div class="text">
+
+              <div itemprop="text">
+                {{ i.answer}} {{course_id}}
+
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </li>
+      {% endfor %}
+
+
+    </ol>
+  </div>
+
+  {% else %}
+
+  <form action="#" method="post" id="commentform" enctype="multipart/form-data">
+    {% csrf_token %}
+    <!--
+      <div class="clearfix"> <label for="featured_image">Featured image</label>
+      <div class="fileinputs"> <input type="file" name="featured_image" id="featured_image">
+        <div class="fakefile"> <button type="button" class="small margin_0">Select file</button> <span><i
+              class="icon-arrow-up"></i>Browse</span></div>
+      </div>
+    </div>
+    -->
+    <div id="respond-textarea">
+      <!--<p> <label class="required" for="comment">Answer<span>*</span></label>-->
+      <div id="wp-comment-wrap" class="wp-core-ui wp-editor-wrap tmce-active">
+        <link rel='stylesheet' id='dashicons-css'
+          href='https://2code.info/demo/themes/ask-me/wp-includes/css/dashicons.min.css' type='text/css' media='all' />
+        <link rel='stylesheet' id='editor-buttons-css'
+          href='https://2code.info/demo/themes/ask-me/wp-includes/css/editor.min.css' type='text/css' media='all' />
+
+        <div id="wp-comment-editor-container" class="wp-editor-container">
+          <div id="qt_comment_toolbar" class="quicktags-toolbar"></div><textarea required style="color:black;"
+            class="wp-editor-area" rows="4" placeholder="write your answer here..." autocomplete="off" cols="40"
+            name="answer" id="answer"></textarea>
+          <p class="form-submit"> <input name="btnAns" type="submit" id="submit" value="Post your answer"
+              class="button small color">
+
+        </div>
+      </div>
+      </p>
+    </div>
+
+    <!--
+      <div class="clearfix"></div>
+    <div class="cancel-comment-reply"><a rel="nofollow" id="cancel-comment-reply-link"
+        href="/demo/themes/ask-me/question/how-do-i-make-the-most-out-of-a-ms-in-business-analytics/#respond"
+        style="display:none;">Click here to cancel reply.</a></div>-->
+
+
+
+  </form>
+  {% endif %}
+  <div id="comments"></div>
+  <div id="commentlist" class="page-content ">
+    <div class="boxedtitle page-title">
+      <h2>All Answers ( <span class="color">{{n}}</span> )</h2>
+    </div>
+    <ol class="commentlist clearfix">
+      {% for i in answers %}
+      <li class="comment byuser comment-author-barry even thread-even depth-1 comment " id="li-comment-937">
+        <div itemprop='suggestedAnswer' id="comment-937" class="comment-body clearfix" rel="post-2110">
+          <!-- <div class="avatar-img"> <a class="tooltip-n">
+              <img itemprop='image' class="avatar img-circle" alt='avatar' style="width:30px; height:30px;"
+                src="/media/{{i.answered_by.profile.profile_image}}">
+            </a></div> -->
+            <div class="avatar-img"> <a  class="tooltip-n"> 
+              <img itemprop='image' class="avatar img-circle" alt='avatar'style="width:30px height:30px" 
+            src="/media/{{i.answered_by.profile.profile_image}}">
+          </a></div>
+          <div class="comment-text">
+            <div class="author clearfix">
+              <div class="comment-author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+                <a itemprop="url" href="#"> <span itemprop="name">{{i.answered_by.get_full_name}}</span> </a>
+              </div>
+              <div class="comment-vote">
+                <ul class="single-question-vote">
+                  <li class="loader_3"></li>
+                  <li>
+                    {% ifequal voteForAnswer 1 %}
+
+                    <a style="background-color: white" href="/vote/{{i.id}}/" class="single-question-vote-up ask_vote_up comment_vote_up vote_allow"
+                      title="Vote" id="comment_vote_up-937"><i class="icon-thumbs-up"></i></a>
+                    {% else %}
+                    {% for j in voteForAnswer %}
+                    {% ifequal i j.answer %}
+                    <a style="background-color: whitesmoke" href="/vote/{{i.id}}/"
+                      class="single-question-vote-up ask_vote_up comment_vote_up vote_allow" title="unvote"
+                      id="comment_vote_up-937"><i style=" color: blue; size: 40px;" class="icon-thumbs-up"></i></a>
+                    {%endifequal%}
+                    {% endfor %}
+
+                    {%endifequal%}
+                  </li>
+
+                </ul>
+              </div> <span itemprop="upvoteCount" class="question-vote-result question_vote_result">
+                {% ifnotequal i.vote 0 %}
+                {{i.vote}}
+                <!-- {% widthratio i.vote 2 1%} -->
+                {%endifnotequal%}
+              </span>
+              <div class="comment-meta"> <a itemprop="url" class="date"><span><i
+                      class="fa fa-calendar"></i>{{i.whenpublished}}</span></a></div>
+              <div class="comment-reply">
+                <!--<a class="question_r_l comment_l report_c" href="#"><i
+               class="icon-flag"></i>Report</a> <a rel="nofollow"
+             class="comment-reply-link askme-reply-link" href="#respond" data-id="937"
+             aria-label="Reply to Mohamed Habaza"><i class="icon-reply"></i>Reply</a>-->
+              </div>
+
+            </div>
+            <div class="text">
+
+              <div itemprop="text">
+                {{ i.answer}} {{course_id}}
+
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </li>
+      {% endfor %}
+
+
+    </ol>
+  </div>
+
+
+</div>
+
+<script async="async" type='text/javascript'
+  src='https://2code.info/demo/themes/ask-me/wp-content/plugins/akismet/_inc/form.js' id='akismet-form-js'></script>
+<script type='text/javascript' id='utils-js-extra'>
+  var userSettings = { "url": "\/demo\/themes\/ask-me\/", "uid": "0", "time": "1615804598", "secure": "1" };</script>
+<script type='text/javascript' src='https://2code.info/demo/themes/ask-me/wp-includes/js/utils.min.js'
+  id='utils-js'></script>
+<script type='text/javascript' src='https://2code.info/demo/themes/ask-me/wp-admin/js/editor.min.js'
+  id='editor-js'></script>
+<script type='text/javascript' id='editor-js-after'> window.wp.oldEditor = window.wp.editor;</script>
+<script type='text/javascript' id='quicktags-js-extra'>
+  var quicktagsL10n = { "closeAllOpenTags": "Close all open tags", "closeTags": "close tags", "enterURL": "Enter the URL", "enterImageURL": "Enter the URL of the image", "enterImageDescription": "Enter a description of the image", "textdirection": "text direction", "toggleTextdirection": "Toggle Editor Text Direction", "dfw": "Distraction-free writing mode", "strong": "Bold", "strongClose": "Close bold tag", "em": "Italic", "emClose": "Close italic tag", "link": "Insert link", "blockquote": "Blockquote", "blockquoteClose": "Close blockquote tag", "del": "Deleted text (strikethrough)", "delClose": "Close deleted text tag", "ins": "Inserted text", "insClose": "Close inserted text tag", "image": "Insert image", "ul": "Bulleted list", "ulClose": "Close bulleted list tag", "ol": "Numbered list", "olClose": "Close numbered list tag", "li": "List item", "liClose": "Close list item tag", "code": "Code", "codeClose": "Close code tag", "more": "Insert Read More tag" };</script>
+<script type='text/javascript' src='https://2code.info/demo/themes/ask-me/wp-includes/js/quicktags.min.js'
+  id='quicktags-js'></script>
+<script type='text/javascript' src='https://2code.info/demo/themes/ask-me/wp-includes/js/dist/dom-ready.min.js'
+  id='wp-dom-ready-js'></script>
+<script type='text/javascript'
+  id='wp-a11y-js-translations'> (function (domain, translations) { var localeData = translations.locale_data[domain] || translations.locale_data.messages; localeData[""].domain = domain; wp.i18n.setLocaleData(localeData, domain); })("default", { "locale_data": { "messages": { "": {} } } });</script>
+<script type='text/javascript' src='https://2code.info/demo/themes/ask-me/wp-includes/js/dist/a11y.min.js'
+  id='wp-a11y-js'></script>
+<script type='text/javascript' id='wplink-js-extra'>
+  var wpLinkL10n = { "title": "Insert\/edit link", "update": "Update", "save": "Add Link", "noTitle": "(no title)", "noMatchesFound": "No results found.", "linkSelected": "Link selected.", "linkInserted": "Link inserted.", "minInputLength": "3" };</script>
+<script type='text/javascript' src='https://2code.info/demo/themes/ask-me/wp-includes/js/wplink.min.js'
+  id='wplink-js'></script>
+<script type='text/javascript' src='https://2code.info/demo/themes/ask-me/wp-includes/js/jquery/ui/menu.min.js'
+  id='jquery-ui-menu-js'></script>
+<script type='text/javascript' id='jquery-ui-autocomplete-js-extra'>
+  var uiAutocompleteL10n = { "noResults": "No results found.", "oneResult": "1 result found. Use up and down arrow keys to navigate.", "manyResults": "%d results found. Use up and down arrow keys to navigate.", "itemSelected": "Item selected." };</script>
+<script type='text/javascript' src='https://2code.info/demo/themes/ask-me/wp-includes/js/jquery/ui/autocomplete.min.js'
+  id='jquery-ui-autocomplete-js'></script>
+<script
+  type="text/javascript"> tinyMCEPreInit = { baseURL: "https://2code.info/demo/themes/ask-me/wp-includes/js/tinymce", suffix: ".min", mceInit: { 'comment': { theme: "modern", skin: "lightgray", language: "en", formats: { alignleft: [{ selector: "p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li", styles: { textAlign: "left" } }, { selector: "img,table,dl.wp-caption", classes: "alignleft" }], aligncenter: [{ selector: "p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li", styles: { textAlign: "center" } }, { selector: "img,table,dl.wp-caption", classes: "aligncenter" }], alignright: [{ selector: "p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li", styles: { textAlign: "right" } }, { selector: "img,table,dl.wp-caption", classes: "alignright" }], strikethrough: { inline: "del" } }, relative_urls: false, remove_script_host: false, convert_urls: false, browser_spellcheck: true, fix_list_elements: true, entities: "38,amp,60,lt,62,gt", entity_encoding: "raw", keep_styles: false, cache_suffix: "wp-mce-49110-20201110", resize: "vertical", menubar: false, branding: false, preview_styles: "font-family font-size font-weight font-style text-decoration text-transform", end_container_on_empty_block: true, wpeditimage_html5_captions: true, wp_lang_attr: "en-US", wp_keep_scroll_position: false, wp_shortcut_labels: { "Heading 1": "access1", "Heading 2": "access2", "Heading 3": "access3", "Heading 4": "access4", "Heading 5": "access5", "Heading 6": "access6", "Paragraph": "access7", "Blockquote": "accessQ", "Underline": "metaU", "Strikethrough": "accessD", "Bold": "metaB", "Italic": "metaI", "Code": "accessX", "Align center": "accessC", "Align right": "accessR", "Align left": "accessL", "Justify": "accessJ", "Cut": "metaX", "Copy": "metaC", "Paste": "metaV", "Select all": "metaA", "Undo": "metaZ", "Redo": "metaY", "Bullet list": "accessU", "Numbered list": "accessO", "Insert\/edit image": "accessM", "Insert\/edit link": "metaK", "Remove link": "accessS", "Toolbar Toggle": "accessZ", "Insert Read More tag": "accessT", "Insert Page Break tag": "accessP", "Distraction-free writing mode": "accessW", "Add Media": "accessM", "Keyboard Shortcuts": "accessH" }, content_css: "https://2code.info/demo/themes/ask-me/wp-includes/css/dashicons.min.css?ver=5.7,https://2code.info/demo/themes/ask-me/wp-includes/js/tinymce/skins/wordpress/wp-content.css?ver=5.7", plugins: "charmap,colorpicker,hr,lists,media,paste,tabfocus,textcolor,fullscreen,wordpress,wpautoresize,wpeditimage,wpemoji,wpgallery,wplink,wpdialogs,wptextpattern,wpview,image", selector: "#comment", wpautop: true, indent: false, toolbar1: "formatselect,bold,italic,bullist,numlist,blockquote,alignleft,aligncenter,alignright,link,wp_more,spellchecker,fullscreen,wp_adv", toolbar2: "strikethrough,hr,forecolor,pastetext,removeformat,charmap,outdent,indent,undo,redo,wp_help", toolbar3: "", toolbar4: "", tabfocus_elements: ":prev,:next", body_class: "comment post-type-question post-status-publish page-template-default locale-en-us" } }, qtInit: { 'comment': { id: "comment", buttons: "strong,em,link,block,del,ins,img,ul,ol,li,code,more,close" } }, ref: { plugins: "charmap,colorpicker,hr,lists,media,paste,tabfocus,textcolor,fullscreen,wordpress,wpautoresize,wpeditimage,wpemoji,wpgallery,wplink,wpdialogs,wptextpattern,wpview,image", theme: "modern", language: "en" }, load_ext: function (url, lang) { var sl = tinymce.ScriptLoader; sl.markDone(url + '/langs/' + lang + '.js'); sl.markDone(url + '/langs/' + lang + '_dlg.js'); } };</script>
+<script type='text/javascript' src='https://2code.info/demo/themes/ask-me/wp-includes/js/tinymce/tinymce.min.js'
+  id='wp-tinymce-root-js'></script>
+<script type='text/javascript'
+  src='https://2code.info/demo/themes/ask-me/wp-includes/js/tinymce/plugins/compat3x/plugin.min.js'
+  id='wp-tinymce-js'></script>
+<script
+  type='text/javascript'> tinymce.addI18n('en', { "Ok": "OK", "Bullet list": "Bulleted list", "Insert\/Edit code sample": "Insert\/edit code sample", "Url": "URL", "Spellcheck": "Check Spelling", "Row properties": "Table row properties", "Cell properties": "Table cell properties", "Cols": "Columns", "Paste row before": "Paste table row before", "Paste row after": "Paste table row after", "Cut row": "Cut table row", "Copy row": "Copy table row", "Merge cells": "Merge table cells", "Split cell": "Split table cell", "Paste is now in plain text mode. Contents will now be pasted as plain text until you toggle this option off.": "Paste is now in plain text mode. Contents will now be pasted as plain text until you toggle this option off.\n\nIf you\u2019re looking to paste rich content from Microsoft Word, try turning this option off. The editor will clean up text pasted from Word automatically.", "Rich Text Area. Press ALT-F9 for menu. Press ALT-F10 for toolbar. Press ALT-0 for help": "Rich Text Area. Press Alt-Shift-H for help.", "You have unsaved changes are you sure you want to navigate away?": "The changes you made will be lost if you navigate away from this page.", "Your browser doesn't support direct access to the clipboard. Please use the Ctrl+X\/C\/V keyboard shortcuts instead.": "Your browser does not support direct access to the clipboard. Please use keyboard shortcuts or your browser\u2019s edit menu instead.", "Edit|button": "Edit" }); tinymce.ScriptLoader.markDone('https://2code.info/demo/themes/ask-me/wp-includes/js/tinymce/langs/en.js');</script>
+<script
+  type="text/javascript"> var ajaxurl = "/demo/themes/ask-me/wp-admin/admin-ajax.php"; (function () { var init, id, $wrap; if (typeof tinymce !== 'undefined') { if (tinymce.Env.ie && tinymce.Env.ie < 11) { tinymce.$('.wp-editor-wrap ').removeClass('tmce-active').addClass('html-active'); return; } for (id in tinyMCEPreInit.mceInit) { init = tinyMCEPreInit.mceInit[id]; $wrap = tinymce.$('#wp-' + id + '-wrap'); if (($wrap.hasClass('tmce-active') || !tinyMCEPreInit.qtInit.hasOwnProperty(id)) && !init.wp_skip_init) { tinymce.init(init); if (!window.wpActiveEditor) { window.wpActiveEditor = id; } } } } if (typeof quicktags !== 'undefined') { for (id in tinyMCEPreInit.qtInit) { quicktags(tinyMCEPreInit.qtInit[id]); if (!window.wpActiveEditor) { window.wpActiveEditor = id; } } } }());</script>
+
+
+
+
+
+{% endblock %}

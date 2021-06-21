@@ -1,0 +1,33 @@
+{% extends 'course/basic.html' %}
+
+{% block title %} Create class {% endblock %}
+{% block body %}
+    <div style="background-color:#eef6f70a " class="container">
+        <div class="col my-4">
+            
+            <form method="post" action="/my_class">{% csrf_token %}
+                <input type="hidden" name="itemsJson" id="itemsJson">
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="course_code" name="course_code" placeholder="Course code">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="course_title" name="course_title" placeholder="Course Title">
+                    </div>
+                    <div class="form-group">
+                        <input type="number" step="0.01" class="form-control" id="course_credit" name="course_credit" placeholder="Course Credit">
+                    </div>
+                 
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="section" name="section" placeholder="Section">
+                    </div>
+
+                
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+
+    </div>
+
+{% endblock %}

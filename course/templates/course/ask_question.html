@@ -1,0 +1,64 @@
+{% extends 'course/class_basic.html' %}
+
+{% block title%} Ask question {% endblock %}
+{% block css1%}
+
+
+{% endblock %}
+
+{% block body1 %}
+
+<div id="respond" class="comment-respond page-content clearfix ">
+    <div class="boxedtitle page-title">
+      
+    </div>
+   <!-- <form method = "post" enctype="multipart/form-data"> 
+        {% csrf_token %}
+
+      <h1>Ask a question</h1>
+      <p> <label class="required" for="comment">Answer<span>*</span></label>
+      <textarea rows="6" cols="70" required style="color:black;" placeholder="Ask your question here." id= "question" name = 'question'>
+      </textarea>
+      </p>
+      
+      <h1>Your answer</h1>
+      <textarea required rows="6" cols="70" style="color:black;" id='answer' name='answer' >
+      </textarea>
+     
+      
+      <div class="clearfix"></div>
+      <div class="cancel-comment-reply"><a rel="nofollow" id="cancel-comment-reply-link"
+          href="/demo/themes/ask-me/question/how-do-i-make-the-most-out-of-a-ms-in-business-analytics/#respond"
+          style="display:none;">Click here to cancel reply.</a></div>
+      <p class="form-submit"> <input name="submit" type="submit" id="submit" value="Ask"
+          class="button small color"> <input type='hidden' name='comment_post_ID' value='2110'
+          id='comment_post_ID' /> <input type='hidden' name='comment_parent' id='comment_parent'
+          value='0' />
+      
+    </form>
+-->
+    <form method="post" action="#">{% csrf_token %}
+        <input type="hidden" name="itemsJson" id="itemsJson">
+
+        <h1><label class="required" for="comment">Ask a question<span>*</span></label></h1>
+        
+        <textarea  required style="color:black;"  id= "question" name = 'question' placeholder="Ask your question here..."></textarea>
+<!--         
+        <div class="clearfix"> <label for="featured_image">Featured image</label>
+            <div class="fileinputs"> <input type="file" name="featured_image" id="featured_image">
+              <div class="fakefile"> <button type="button" class="small margin_0">Select file</button> <span><i
+                    class="icon-arrow-up"></i>Browse</span></div>
+            </div>
+          </div> -->
+       <input type="number" step="0.01" class="form-control" id="mark" name="mark" placeholder="Add marks">
+       <h1><label for="comment">Your answer <span>(not required)</span></label></h1><textarea rows="6" cols="70" style="color:black;" id='answer' name='answer' placeholder="write your answer here..." ></textarea>
+       <p class="form-submit"> <input name="submit" type="submit" id="submit" value="Ask"
+        class="button small color">
+       
+    </form>
+  </div>
+
+
+
+    
+{% endblock %}

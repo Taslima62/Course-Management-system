@@ -1,0 +1,81 @@
+
+{% extends 'course/basic.html' %}
+
+{% block title%} Home {% endblock %}
+
+{% load crispy_forms_tags %}
+{% block body %}
+<div class="container bootstrap snippets bootdey">
+  <h1 class="text-primary"><span class="glyphicon glyphicon-user"></span>Edit Profile</h1>
+    <hr>
+<div class="row">
+    <!-- left column -->
+    
+    <div class="col-md-6">
+      <form method = "post" enctype="multipart/form-data"> 
+        {% csrf_token %} 
+        
+        <div class="text-center">
+          <img src="/media/{{user_profile.profile_image}}" style="border-radius: 50%;width: 100px;height: 100px;" class="avatar img-circle" alt="avatar">
+          <h6>Upload a different photo...</h6>
+        
+         </div>
+         {{ image_form | crispy}}
+          <button type="submit" name="btnform1">Save Changes</button>
+      </form>
+    </div>
+    
+    <!-- edit form column -->
+    <div class="col-md-6 personal-info">
+      <!--<div class="alert alert-info alert-dismissable">
+        <a class="panel-close close" data-dismiss="alert">×</a> 
+        <i class="fa fa-coffee"></i>
+        This is an <strong>.alert</strong>. Use this to show important messages to the user.
+      </div>-->
+      <h3>Personal info</h3>
+      
+      <form class="form-horizontal" role="form">
+        <div class="form-group">
+          <label class="col-lg-3 control-label">First name:</label>
+          <div class="col-lg-8">
+            <input class="form-control" type="text" value="">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Last name:</label>
+          <div class="col-lg-8">
+            <input class="form-control" type="text" value="">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Registration:</label>
+          <div class="col-lg-8">
+            <input class="form-control" type="text" value="">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Email:</label>
+          <div class="col-lg-8">
+            <input class="form-control" type="text" value="janesemail@gmail.com">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">User type:</label>
+          <div class="col-lg-8">
+            <div class="ui-select">
+              <select id="user_time_zone" class="form-control">
+                <option value="Teacher">Teacher</option>
+                <option value="Student">Student</option>
+                <option value="TA">TA</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" name="btnform2">Save Changes</button>
+      </form>
+    </div>
+</div>
+</div>
+<hr>
+{% endblock %}

@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <title>{% block title%} {% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,700|Oswald:400,700" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../../static/course/fonts/icomoon/style.css">
+
+    <link rel="stylesheet" href="../../static/course/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../static/course/css/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="../../static/course/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../../static/course/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../../static/course/fonts/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="../../static/course/css/aos.css">
+
+    <!-- MAIN CSS -->
+
+    <link rel="stylesheet" href="../../static/course/css/style.css">
+    
+
+    {% block css %}{% endblock %}
+  </head>
+
+  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+   {% load static %}
+    <div id="overlayer"></div>
+    <div class="loader">
+      <div class="spinner-border text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+
+    <div class="site-wrap" id="home-section">
+
+      <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+          <div class="site-mobile-menu-close mt-3">
+            <span class="icon-close2 js-menu-toggle"></span>
+          </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+      </div>
+
+
+      
+
+      <header class="site-navbar js-sticky-header site-navbar-target top-bar bg-light" role="banner">
+
+        <div class="container">
+          <div class="row align-items-center position-relative">
+
+
+            <div class="site-logo">
+              <a href="#" class="text-black"><span class="text-primary"></span><h2>Course Management<span></span></h2></a>
+            </div>
+
+            <div class="col-12">
+              <nav class="site-navigation text-right ml-auto " role="navigation">
+
+                <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
+                  <li><a  href="/" class="nav-link">Home</a></li>
+ 
+                 <li><a {% if user.is_authenticated %} href="/my_class/" {% else %} href="/login/" {% endif %} class="nav-link">My class</a></li>
+
+               
+                  <li><a {% if user.is_authenticated %} href="/contact/" {% else %} href="/login/" {% endif %} class="nav-link">Contact</a></li>
+				          <li><a {% if user.is_authenticated %} href="/create_class/" {% else %} href="/login/" {% endif %} class="nav-link">Create class</a></li>
+                  <li><a {% if user.is_authenticated %} href="/join_class/" {% else %} href="/login/" {% endif %} class="nav-link">Join class</a></li>
+                
+                {% if user.is_authenticated %}
+                <!-- 
+                <li><a  href="/my_class/" class="nav-link">My class</a></li>
+               
+                <li><a href="/contact/" class="nav-link">Contact</a></li>
+                <li><a href="/create_class/" class="nav-link">Create class</a></li>
+                <li><a href="/join_class/" class="nav-link">Join class</a></li> -->  
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item"  href="/logout" style="background-color: rgb(108, 123, 175);color: black;">Logout</a>
+                    <a class="dropdown-item"  href="/edit_profile" style="background-color: rgb(108, 123, 175);color: black;">Edit profile</a>
+                    
+                    <a class="dropdown-item"  href="#" style="background-color: rgb(108, 123, 175);color: black;"></a>
+                    
+                  </div>
+                </li>
+          {% else %}
+             <li>
+                 <a href="/login" class="nav-link"> Sign In </a></li>
+				  <li>
+						<a href="/signup" class="nav-link"> Sign Up </a>
+				  </li>
+          {% endif %}
+
+
+                </ul>
+              </nav>
+
+            </div>
+
+            <div class="toggle-button d-inline-block d-lg-none"><a href="#" class="site-menu-toggle py-5 js-menu-toggle text-black"><span class="icon-menu h3"></span></a></div>
+
+          </div>
+        </div>
+
+      </header>
+     
+    {% block body %} {% endblock %}
+    
+    
+    </div>
+
+    <script src="../../static/course/js/jquery-3.3.1.min.js"></script>
+    <script src="../../static/course/js/popper.min.js"></script>
+    <script src="../../static/course/js/bootstrap.min.js"></script>
+    <script src="../../static/course/js/owl.carousel.min.js"></script>
+    <script src="../../static/course/js/jquery.sticky.js"></script>
+    <script src="../../static/course/js/jquery.waypoints.min.js"></script>
+    <script src="../../static/course/js/jquery.animateNumber.min.js"></script>
+    <script src="../../static/course/js/jquery.fancybox.min.js"></script>
+    <script src="../../static/course/js/jquery.easing.1.3.js"></script>
+    <script src="../../static/course/js/aos.js"></script>
+
+    <script src="../../static/course/js/main.js"></script>
+   {% block js %} {% endblock %}
+
+  </body>
+
+</html>

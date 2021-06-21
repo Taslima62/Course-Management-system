@@ -1,0 +1,110 @@
+{% extends 'course/class_basic.html' %}
+
+{% block title%} Short questions {% endblock %}
+{% block css1%}
+<meta name="theme-color" content="#ff7361">
+<meta name="msapplication-navbutton-color" content="#ff7361">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta property="og:site_name" content="Ask me" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://2code.info/demo/themes/ask-me/wp-content/uploads/2014/06/logo_light.png" />
+<meta property="og:title" content="Home No Box" />
+<meta property="og:url" content="https://2code.info/demo/themes/ask-me/home-no-box/" />
+{% endblock %}
+
+{% block body1 %}
+
+
+
+<div id="commentlist" class="page-content ">
+    <ol class="commentlist clearfix">
+       {% for i in question %}
+       <li class="comment byuser comment-author-barry even thread-even depth-1 comment " id="li-comment-937">
+        <div itemprop='suggestedAnswer' id="comment-937" class="comment-body clearfix" rel="post-2110">
+          <div class="avatar-img"> <a  class="tooltip-n"> 
+              <img itemprop='image' class="avatar img-circle" alt='avatar'style="width:30px height:30px" 
+            src="/media/{{i.asked_by.profile.profile_image}}">
+          </a></div>
+          <div class="comment-text">
+            <div class="author clearfix">
+              <div class="comment-author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+                <a itemprop="url" href="#"> <span
+                    itemprop="name">{{i.asked_by.get_full_name}}</span> </a> </div>
+              <!-- <div class="comment-vote">
+                      <ul class="single-question-vote">
+                        <li class="loader_3"></li>
+                        <li><a href="#" class="single-question-vote-up ask_vote_up comment_vote_up vote_allow"
+                            title="Like" id="comment_vote_up-937"><i class="icon-thumbs-up"></i></a></li>
+                        
+                      </ul>
+                    </div> <span itemprop="upvoteCount"
+                class="question-vote-result question_vote_result">{{ course_id}}</span> -->
+              <div class="comment-meta">  <a itemprop="url"
+                 class="date"><span><i class="fa fa-calendar"></i>{{i.whenpublished}}</span></a>
+                </div>
+                <!-- <div class="comment-meta">  <a itemprop="url"
+                  class="date"><span><i class="fa fa-calendar"></i>{{i.marks}} marks</span></a>
+                 </div> -->
+                
+                 <!-- {% ifequal s 0 %} 
+                 <button type="button" class="btn btn-primary">
+                  <a href="/unmarked_answers/{{ i.id }}/" ><span class="badge badge-light">+</span></a>
+                  </button>
+
+                  
+                {% else %} -->
+                 <div class="comment-reply"> <!--<a class="question_r_l comment_l report_c" href="#"><i
+                  class="icon-flag"></i>Report</a> <a rel="nofollow"
+                class="comment-reply-link askme-reply-link" href="#respond" data-id="937"
+                aria-label="Reply to Mohamed Habaza"><i class="icon-reply"></i>Reply</a>-->
+                {% for k in answered_by %}
+                {% ifequal k.question  i %}
+                <h1 class="question-report report_q" type="buton" style="background-color: green"> {{i.answer|title}}</h1>
+                {%else%}
+                    <button class="question-report report_q" type="buton" style="background-color: #f58544" onclick="displayMe()">Anwer</button>
+                {%endifequal%}
+                {%endfor%}
+
+                  </div>
+                <!-- {% endifequal %} -->
+              </div>
+            <div class="text">
+              
+              <div itemprop="text">
+                <a href="#" style="font-size:150%; color: black;"><b>{{ i.question}}</b></a>
+              </div>
+
+              <form method="post" style="display: none;" id = "ansForm" action="#">{% csrf_token %}
+                <input type="hidden" name="question" id="question" value={{ i.id }}>
+                <input type="hidden" name="ans" id="ans" value={{ i.answer }}>
+                <input type="text" minlength="{{i.answer|length}}" maxlength="{{i.answer|length}}" name="ans" id="ans" placeholder="length = {{i.answer|length}}">
+                <!-- <input class="form-control" id="mark" name="mark" placeholder="Enter the marks"> -->
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            <di>{% for i in messages %}
+              {{i}}
+              {%endfor%}
+            </di>
+              
+            </div>
+            
+          </div>
+          
+        </div>
+      </li>
+      {% endfor %}
+              
+    </ol>
+  </div>
+
+<script>
+
+  function displayMe(){
+    var a = document.getElementById("ansForm").style.display
+    if(a == "none") document.getElementById("ansForm").style.display = "block"
+    else document.getElementById("ansForm").style.display = "none"
+  }
+</script>
+
+{% endblock %}
